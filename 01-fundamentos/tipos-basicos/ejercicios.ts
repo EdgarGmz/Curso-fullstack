@@ -102,7 +102,77 @@ let es_estudiante: boolean = false
  * Usa type assertion para tratarla como string y obten su longitud
  */
 
-let datoCualquiera: any = false
-let longitud = (datoCualquiera as string).length
+// let datoCualquiera: any = false
+// let longitud = (datoCualquiera as string).length
 
-console.log(`La longggitud del string es: ${longitud}`)
+// console.log(`La longggitud del string es: ${longitud}`)
+
+// EJERCICIO #9
+/*
+* Declara un arreglo de numeros y una funcion que calcule
+el promedio de sus elementos
+*/
+
+// let numeros: number[] = [10, 20, 30, 40, 50]
+
+// function calcularPromedio(nums: number[]){
+//     let suma: number = 0
+//     for(let num of nums){
+//         suma += num
+//     }
+//     return suma / nums.length
+// }
+// console.log(`El promedio de los numeros es: ${calcularPromedio(numeros)}`)
+
+// EJERCICIO $10
+/**
+ * Crea una funcion que reciba un array de strings y retorne
+ * un nuevo array con la longitud de cada string
+ * 
+ */
+
+// let palabras: string [] = ["TypeScript", "JavaScript", "Angular", "React"]
+
+// function obtenerLongitudes(arr: string[]){
+//    let longitudes: number[] = []
+//    for(let p of arr){
+//     longitudes.push(p.length)
+//    } 
+//    return longitudes
+// }
+// console.log(`Las longitudes de cada elemento del arreglo son: ${obtenerLongitudes(palabras)}`)
+
+// EJERCICIO #11
+/**
+ * Define un tipo personalizado (type alias) para representar un 
+ * producto con propiedades: nombre, precio y disponible. Crea una 
+ * funcion que reciba un producto y retorne un mensaje con su informacion.
+ */
+
+// type Product = {name: string, price: number, isAvailable: boolean}
+
+// let product: Product = {
+//     name: "Playstation 5",
+//     price: 499.99,
+//     isAvailable: true
+// }
+
+// function showProductInfo(prod: Product): string{
+//     return `Product's name: ${prod.name} \nPrice: ${prod.price} \nAvailable: ${prod.isAvailable}`
+// }
+
+// console.log(showProductInfo(product))
+
+// EJERCICIO #12
+/**
+ * Crea una función que reciba un parametro opcional. Si el parametro
+ * se proporciona, imprimelo; si no, imprime 'No se proporciona parametro´.
+ */
+
+function mostrarParametro(parametro?: string): void{
+    if(parametro) console.log(`El parametro proporcionado es: ${parametro}`)
+    else console.log("No se proporciona parametro")
+}
+
+mostrarParametro("Hola Mundo!")
+mostrarParametro()
