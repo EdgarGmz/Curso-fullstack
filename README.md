@@ -93,14 +93,32 @@
 
 <div align="center">
 
-![Concepts](https://img.shields.io/badge/Conceptos-Definiciones-9C27B0?style=for-the-badge)
+![Concepts](https://img.shields.io/badge/Conceptos-Integrados-9C27B0?style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Fundamentals-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
 </div>
 
-### 🔤 Tipos Básicos
+> 💡 **Nota:** Los conceptos clave están integrados en cada paso del roadmap para facilitar el aprendizaje contextual. Cada paso incluye las definiciones y ejemplos relevantes justo cuando los necesitas.
 
-#### **Tipo (`Type`)**
+**🎯 Navegación Rápida de Conceptos:**
+- **Paso 2:** Tipos básicos (Type, any, unknown, never, void)
+- **Paso 3:** Tuplas y Enums
+- **Paso 5:** Interfaces y Types
+- **Paso 6:** Clases, Herencia, Polimorfismo, Encapsulamiento
+- **Paso 7:** Genéricos y Constraints
+- **Paso 8:** Módulos ES6, Namespaces, Type Inference
+- **Paso 9:** Union/Intersection Types, Type Guards, Narrowing, Discriminated Unions, Conditional Types
+- **Paso 10:** Utility Types (Partial, Required, Readonly, Pick, Omit, Record)
+- **Paso 11:** Decoradores
+- **Paso 12:** Template Literal Types
+- **Paso 13:** API y REST
+- **Paso 14:** Promise, Async/Await, Type Assertion
+- **Paso 17:** ORM
+- **Paso 22:** Principios SOLID (SRP, OCP, DIP)
+
+> 💡 **Tip:** Cada concepto está explicado con definición y ejemplos prácticos directamente en el paso del roadmap donde se aprende. Esto facilita el aprendizaje contextual y la práctica inmediata.
+
+---
 **Definición:** Un tipo en TypeScript es una forma de describir la forma y el comportamiento de un valor. Define qué operaciones se pueden realizar con ese valor y qué datos puede contener.
 
 **Ejemplo:**
@@ -1211,6 +1229,37 @@ tsc --watch
 - [ ] Configurar `tsconfig.json`
 - [ ] Crear estructura de carpetas básica
 
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura de carpetas
+mkdir -p src/01-fundamentos/tipos-basicos
+mkdir -p src/02-intermedio
+mkdir -p src/03-avanzado
+mkdir -p src/04-apis
+mkdir -p src/05-orms
+mkdir -p src/06-proyectos
+mkdir -p src/07-principios-solid
+
+# Crear archivos iniciales
+touch src/01-fundamentos/tipos-basicos/tipos-basicos.ts
+touch src/01-fundamentos/tipos-basicos/ejercicios.ts
+touch .gitignore
+touch README.md
+
+# Configurar .gitignore
+echo "node_modules/" >> .gitignore
+echo "dist/" >> .gitignore
+echo "*.log" >> .gitignore
+echo ".env" >> .gitignore
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/` (raíz del proyecto)
+- ✅ Crear subcarpetas `01-fundamentos/`, `02-intermedio/`, etc.
+- ✅ Crear archivo `tsconfig.json` (se genera con `tsc --init`)
+- ✅ Crear archivo `.gitignore` en la raíz
+- ✅ Modificar `tsconfig.json`: establecer `rootDir: "./src"` y `outDir: "./dist"`
+
 > 💡 **Sugerencia de Commit**: `git commit -m "feat: configuración inicial del proyecto TypeScript"`
 
 #### Paso 2: Tipos Básicos
@@ -1218,6 +1267,88 @@ tsc --watch
 - [ ] Practicar con tipos `null` y `undefined`
 - [ ] Entender `any`, `unknown` y `never`
 - [ ] Crear ejercicios prácticos
+
+**📚 Conceptos Clave:**
+
+##### **Tipo (`Type`)**
+**Definición:** Un tipo en TypeScript es una forma de describir la forma y el comportamiento de un valor. Define qué operaciones se pueden realizar con ese valor y qué datos puede contener.
+
+**Ejemplo:**
+```typescript
+// Tipos primitivos
+let nombre: string = "Juan";
+let edad: number = 25;
+let activo: boolean = true;
+
+// TypeScript infiere el tipo automáticamente
+let ciudad = "Madrid"; // TypeScript sabe que es string
+```
+
+##### **Tipo `any`**
+**Definición:** Permite cualquier tipo de valor y desactiva la verificación de tipos. Útil para migración gradual desde JavaScript, pero debe evitarse en código nuevo.
+
+**Ejemplo:**
+```typescript
+let valor: any = "hola";
+valor = 42;        // ✅ Permitido
+valor = true;      // ✅ Permitido
+valor.foo.bar;     // ⚠️ No hay verificación de tipos
+```
+
+##### **Tipo `unknown`**
+**Definición:** Similar a `any`, pero más seguro. Requiere verificación de tipo antes de usar el valor. Es la alternativa segura a `any`.
+
+**Ejemplo:**
+```typescript
+let valor: unknown = "hola";
+
+// ❌ Error: no se puede usar directamente
+// console.log(valor.toUpperCase());
+
+// ✅ Correcto: verificar tipo primero
+if (typeof valor === "string") {
+  console.log(valor.toUpperCase()); // Ahora TypeScript sabe que es string
+}
+```
+
+##### **Tipo `never`**
+**Definición:** Representa valores que nunca ocurren. Se usa para funciones que nunca retornan o para tipos que representan valores imposibles.
+
+**Ejemplo:**
+```typescript
+// Función que nunca retorna
+function lanzarError(mensaje: string): never {
+  throw new Error(mensaje);
+}
+
+// Tipo que nunca puede ocurrir
+type Nunca = string & number; // Imposible, siempre será never
+```
+
+##### **Tipo `void`**
+**Definición:** Representa la ausencia de un valor de retorno. Se usa principalmente para funciones que no retornan nada.
+
+**Ejemplo:**
+```typescript
+function mostrarMensaje(mensaje: string): void {
+  console.log(mensaje);
+  // No retorna nada explícitamente
+}
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear archivos en la carpeta de tipos básicos
+touch src/01-fundamentos/tipos-basicos/tipos-primitivos.ts
+touch src/01-fundamentos/tipos-basicos/tipos-especiales.ts
+touch src/01-fundamentos/tipos-basicos/ejercicios.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear archivo `src/01-fundamentos/tipos-basicos/tipos-primitivos.ts`
+- ✅ Crear archivo `src/01-fundamentos/tipos-basicos/tipos-especiales.ts`
+- ✅ Crear archivo `src/01-fundamentos/tipos-basicos/ejercicios.ts`
+- ✅ Modificar `src/01-fundamentos/tipos-basicos/tipos-basicos.ts` (si ya existe)
 
 **📝 Ejercicios:**
 1. Crear variables tipadas para: nombre (string), edad (number), activo (boolean)
@@ -1233,6 +1364,64 @@ tsc --watch
 - [ ] Entender tipos literales
 - [ ] Practicar con objetos anidados
 
+**📚 Conceptos Clave:**
+
+##### **Tupla**
+**Definición:** Array con un número fijo de elementos donde cada elemento tiene un tipo específico.
+
+**Ejemplo:**
+```typescript
+// Tupla simple
+let coordenadas: [number, number] = [40.4168, -3.7038];
+
+// Tupla con tipos diferentes
+let usuario: [string, number, boolean] = ["Juan", 25, true];
+
+// Tupla con elementos opcionales
+let datos: [string, number?] = ["nombre"]; // número es opcional
+
+// Tupla con rest elements
+let numeros: [string, ...number[]] = ["suma", 1, 2, 3, 4];
+```
+
+##### **Enum**
+**Definición:** Tipo que permite definir un conjunto de constantes con nombre. Útil para valores que tienen un conjunto limitado de opciones.
+
+**Ejemplo:**
+```typescript
+// Enum numérico
+enum Estado {
+  Pendiente,    // 0
+  Activo,       // 1
+  Inactivo      // 2
+}
+
+// Enum string
+enum Color {
+  Rojo = "rojo",
+  Verde = "verde",
+  Azul = "azul"
+}
+
+// Uso
+const estado: Estado = Estado.Activo;
+const color: Color = Color.Rojo;
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear archivos para objetos y arrays
+touch src/01-fundamentos/02-objetos.ts
+touch src/01-fundamentos/03-arrays.ts
+touch src/01-fundamentos/interfaces.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear archivo `src/01-fundamentos/02-objetos.ts`
+- ✅ Crear archivo `src/01-fundamentos/03-arrays.ts`
+- ✅ Crear archivo `src/01-fundamentos/interfaces.ts` (o usar el existente `05-interfaces.ts`)
+- ✅ Renombrar `src/01-fundamentos/05-interfaces.ts` si es necesario para mantener orden
+
 **📝 Ejercicios:**
 1. Crear interfaz `Usuario` con propiedades: id, nombre, email, edad
 2. Crear array tipado de usuarios y función para filtrar por edad
@@ -1247,6 +1436,16 @@ tsc --watch
 - [ ] Funciones opcionales y valores por defecto
 - [ ] Funciones de flecha tipadas
 - [ ] Overloads de funciones
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear archivo para funciones
+touch src/01-fundamentos/04-funciones.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear archivo `src/01-fundamentos/04-funciones.ts`
+- ✅ Modificar archivo existente si ya tienes `src/01-fundamentos/04-funciones.ts`
 
 **📝 Ejercicios:**
 1. Crear función `calcularTotal` que reciba precio y cantidad, retorne number
@@ -1265,6 +1464,77 @@ tsc --watch
 - [ ] Extensión de interfaces
 - [ ] Tipos indexados y mapeados básicos
 
+**📚 Conceptos Clave:**
+
+##### **Interface**
+**Definición:** Una interfaz define la estructura de un objeto, especificando qué propiedades debe tener y sus tipos. Permite declaración merging (fusionar múltiples declaraciones).
+
+**Ejemplo:**
+```typescript
+interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+  activo?: boolean; // Propiedad opcional
+}
+
+// Declaración merging
+interface Usuario {
+  telefono?: string; // Se fusiona con la declaración anterior
+}
+
+const usuario: Usuario = {
+  id: 1,
+  nombre: "Juan",
+  email: "juan@example.com"
+  // activo y telefono son opcionales
+};
+```
+
+##### **Type Alias**
+**Definición:** Crea un alias para un tipo. Puede representar tipos primitivos, uniones, intersecciones y otros tipos complejos. No permite declaración merging.
+
+**Ejemplo:**
+```typescript
+// Alias simple
+type ID = string | number;
+
+// Union type
+type Estado = "activo" | "inactivo" | "pendiente";
+
+// Intersection type
+type UsuarioCompleto = Usuario & { direccion: string };
+
+// Función type
+type Operacion = (a: number, b: number) => number;
+```
+
+##### **Diferencia entre Interface y Type**
+
+| Característica | Interface | Type |
+|---------------|-----------|------|
+| **Extensión** | `extends` | `&` (intersection) |
+| **Unión** | No soporta | `\|` (union) |
+| **Merging** | ✅ Sí | ❌ No |
+| **Tipos primitivos** | ❌ No | ✅ Sí |
+| **Uso recomendado** | Objetos, clases | Uniones, tipos complejos |
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para interfaces y types
+mkdir -p src/01-fundamentos/interfaces-types
+touch src/01-fundamentos/interfaces-types/interfaces.ts
+touch src/01-fundamentos/interfaces-types/types.ts
+touch src/01-fundamentos/interfaces-types/comparacion.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/01-fundamentos/interfaces-types/`
+- ✅ Crear archivo `src/01-fundamentos/interfaces-types/interfaces.ts`
+- ✅ Crear archivo `src/01-fundamentos/interfaces-types/types.ts`
+- ✅ Crear archivo `src/01-fundamentos/interfaces-types/comparacion.ts`
+- ✅ Modificar `src/01-fundamentos/05-interfaces.ts` si existe (mover contenido o renombrar)
+
 **📝 Ejercicios:**
 1. Crear interfaz `Animal` y extenderla con `Perro` y `Gato`
 2. Crear type `ID` como union `string | number`
@@ -1279,6 +1549,129 @@ tsc --watch
 - [ ] Modificadores de acceso (public, private, protected)
 - [ ] Herencia y polimorfismo
 - [ ] Clases abstractas e interfaces
+
+**📚 Conceptos Clave:**
+
+##### **Clase**
+**Definición:** Plantilla para crear objetos. Define propiedades y métodos que los objetos instanciados tendrán.
+
+**Ejemplo:**
+```typescript
+class Persona {
+  // Propiedades públicas (por defecto)
+  nombre: string;
+  
+  // Propiedades privadas
+  private edad: number;
+  
+  // Propiedades protegidas
+  protected email: string;
+  
+  // Propiedades readonly
+  readonly id: string;
+  
+  constructor(nombre: string, edad: number, email: string) {
+    this.nombre = nombre;
+    this.edad = edad;
+    this.email = email;
+    this.id = Math.random().toString(36);
+  }
+  
+  // Método público
+  presentarse(): string {
+    return `Soy ${this.nombre}, tengo ${this.edad} años`;
+  }
+}
+```
+
+##### **Herencia**
+**Definición:** Mecanismo por el cual una clase puede heredar propiedades y métodos de otra clase.
+
+**Ejemplo:**
+```typescript
+class Animal {
+  constructor(public nombre: string) {}
+  
+  hacerSonido(): void {
+    console.log("Sonido genérico");
+  }
+}
+
+class Perro extends Animal {
+  hacerSonido(): void {
+    console.log("Guau guau");
+  }
+  
+  correr(): void {
+    console.log(`${this.nombre} está corriendo`);
+  }
+}
+```
+
+##### **Polimorfismo**
+**Definición:** Capacidad de objetos de diferentes clases de responder al mismo mensaje de manera diferente.
+
+**Ejemplo:**
+```typescript
+class Circulo {
+  calcularArea(radio: number): number {
+    return Math.PI * radio * radio;
+  }
+}
+
+class Rectangulo {
+  calcularArea(ancho: number, alto: number): number {
+    return ancho * alto;
+  }
+}
+
+// Ambas clases tienen calcularArea pero con implementaciones diferentes
+```
+
+##### **Encapsulamiento**
+**Definición:** Ocultar detalles internos de implementación y exponer solo lo necesario mediante modificadores de acceso.
+
+**Ejemplo:**
+```typescript
+class Banco {
+  private saldo: number = 0;
+  
+  depositar(cantidad: number): void {
+    if (cantidad > 0) {
+      this.saldo += cantidad;
+    }
+  }
+  
+  obtenerSaldo(): number {
+    return this.saldo; // Acceso controlado
+  }
+  
+  // saldo no es accesible directamente desde fuera
+}
+```
+
+##### **Modificadores de Acceso**
+
+- **Public (Público):** Propiedad o método accesible desde cualquier lugar. Es el modificador por defecto.
+- **Private (Privado):** Propiedad o método accesible solo dentro de la misma clase.
+- **Protected (Protegido):** Propiedad o método accesible dentro de la clase y sus subclases.
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para clases
+mkdir -p src/01-fundamentos/clases
+touch src/01-fundamentos/clases/clases-basicas.ts
+touch src/01-fundamentos/clases/herencia.ts
+touch src/01-fundamentos/clases/abstractas.ts
+touch src/01-fundamentos/clases/ejercicios.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/01-fundamentos/clases/`
+- ✅ Crear archivo `src/01-fundamentos/clases/clases-basicas.ts`
+- ✅ Crear archivo `src/01-fundamentos/clases/herencia.ts`
+- ✅ Crear archivo `src/01-fundamentos/clases/abstractas.ts`
+- ✅ Crear archivo `src/01-fundamentos/clases/ejercicios.ts`
 
 **📝 Ejercicios:**
 1. Crear clase `Vehiculo` con propiedades públicas y métodos privados
@@ -1296,6 +1689,68 @@ tsc --watch
 - [ ] Genéricos en funciones y clases
 - [ ] Utility types básicos (Partial, Pick, Omit)
 
+**📚 Conceptos Clave:**
+
+##### **Genérico**
+**Definición:** Permite crear componentes reutilizables que funcionan con múltiples tipos en lugar de un solo tipo. Se denotan con `<T>` o cualquier nombre entre `<>`.
+
+**Ejemplo:**
+```typescript
+// Función genérica
+function obtenerPrimero<T>(array: T[]): T | undefined {
+  return array[0];
+}
+
+const numero = obtenerPrimero([1, 2, 3]);        // T es number
+const texto = obtenerPrimero(["a", "b", "c"]);    // T es string
+const usuario = obtenerPrimero([{id: 1}]);       // T es {id: number}
+
+// Clase genérica
+class Contenedor<T> {
+  private items: T[] = [];
+  
+  agregar(item: T): void {
+    this.items.push(item);
+  }
+  
+  obtener(index: number): T | undefined {
+    return this.items[index];
+  }
+}
+```
+
+##### **Constraints (Restricciones)**
+**Definición:** Limitan los tipos que pueden usarse con un genérico, especificando que el tipo debe cumplir ciertas condiciones.
+
+**Ejemplo:**
+```typescript
+// Constraint: T debe tener una propiedad length
+function obtenerLongitud<T extends { length: number }>(item: T): number {
+  return item.length;
+}
+
+obtenerLongitud("hola");      // ✅ string tiene length
+obtenerLongitud([1, 2, 3]);   // ✅ array tiene length
+obtenerLongitud(42);          // ❌ number no tiene length
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para genéricos
+mkdir -p src/02-intermedio/genericos
+touch src/02-intermedio/genericos/genericos-funciones.ts
+touch src/02-intermedio/genericos/genericos-clases.ts
+touch src/02-intermedio/genericos/constraints.ts
+touch src/02-intermedio/genericos/utility-types.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/02-intermedio/genericos/`
+- ✅ Crear archivo `src/02-intermedio/genericos/genericos-funciones.ts`
+- ✅ Crear archivo `src/02-intermedio/genericos/genericos-clases.ts`
+- ✅ Crear archivo `src/02-intermedio/genericos/constraints.ts`
+- ✅ Crear archivo `src/02-intermedio/genericos/utility-types.ts`
+
 **📝 Ejercicios:**
 1. Crear función genérica `obtenerPrimero<T>` que retorne el primer elemento de un array
 2. Crear clase genérica `Contenedor<T>` con métodos `agregar` y `obtener`
@@ -1311,6 +1766,89 @@ tsc --watch
 - [ ] Namespaces y organización de código
 - [ ] Declaración de módulos externos
 - [ ] Path mapping en tsconfig.json
+
+**📚 Conceptos Clave:**
+
+##### **Módulo ES6**
+**Definición:** Sistema de módulos que permite exportar e importar código entre archivos. TypeScript soporta completamente los módulos ES6.
+
+**Ejemplo:**
+```typescript
+// utils.ts
+export function sumar(a: number, b: number): number {
+  return a + b;
+}
+
+export const PI = 3.14159;
+
+// main.ts
+import { sumar, PI } from "./utils";
+
+const resultado = sumar(5, 3);
+```
+
+##### **Namespace**
+**Definición:** Forma de organizar código en TypeScript. Agrupa código relacionado bajo un nombre.
+
+**Ejemplo:**
+```typescript
+namespace Matematicas {
+  export function sumar(a: number, b: number): number {
+    return a + b;
+  }
+  
+  export function restar(a: number, b: number): number {
+    return a - b;
+  }
+}
+
+// Uso
+const resultado = Matematicas.sumar(5, 3);
+```
+
+##### **Type Inference (Inferencia de Tipos)**
+**Definición:** Capacidad de TypeScript de determinar automáticamente el tipo de una variable basándose en su valor inicial.
+
+**Ejemplo:**
+```typescript
+// TypeScript infiere que es string
+let nombre = "Juan";
+
+// TypeScript infiere que es number[]
+let numeros = [1, 2, 3];
+
+// TypeScript infiere el tipo de retorno
+function sumar(a: number, b: number) {
+  return a + b; // TypeScript sabe que retorna number
+}
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura modular
+mkdir -p src/02-intermedio/modulos/utils
+mkdir -p src/02-intermedio/modulos/models
+mkdir -p src/02-intermedio/modulos/services
+mkdir -p src/02-intermedio/modulos/types
+
+# Crear archivos de módulos
+touch src/02-intermedio/modulos/utils/matematicas.ts
+touch src/02-intermedio/modulos/utils/index.ts
+touch src/02-intermedio/modulos/models/usuario.ts
+touch src/02-intermedio/modulos/services/usuario-service.ts
+touch src/02-intermedio/modulos/types/index.d.ts
+touch src/02-intermedio/modulos/namespaces.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/02-intermedio/modulos/` con subcarpetas `utils/`, `models/`, `services/`, `types/`
+- ✅ Crear archivo `src/02-intermedio/modulos/utils/matematicas.ts`
+- ✅ Crear archivo `src/02-intermedio/modulos/utils/index.ts` (re-export)
+- ✅ Crear archivo `src/02-intermedio/modulos/models/usuario.ts`
+- ✅ Crear archivo `src/02-intermedio/modulos/services/usuario-service.ts`
+- ✅ Crear archivo `src/02-intermedio/modulos/types/index.d.ts` (declaraciones)
+- ✅ Crear archivo `src/02-intermedio/modulos/namespaces.ts`
+- ✅ Modificar `tsconfig.json`: agregar `paths: { "@/*": ["src/*"] }` y `baseUrl: "."`
 
 **📝 Ejercicios:**
 1. Crear módulo `utils.ts` con funciones exportadas e importarlas
@@ -1330,6 +1868,164 @@ tsc --watch
 - [ ] Discriminated Unions
 - [ ] Conditional Types básicos
 
+**📚 Conceptos Clave:**
+
+##### **Union Type (`|`)**
+**Definición:** Permite que un valor sea uno de varios tipos. Se lee como "o" (OR).
+
+**Ejemplo:**
+```typescript
+type ID = string | number;
+
+function procesarID(id: ID): void {
+  if (typeof id === "string") {
+    console.log(id.toUpperCase());
+  } else {
+    console.log(id.toString());
+  }
+}
+
+procesarID("abc123");  // ✅
+procesarID(123);       // ✅
+```
+
+##### **Intersection Type (`&`)**
+**Definición:** Combina múltiples tipos en uno solo. El valor debe cumplir con todos los tipos combinados. Se lee como "y" (AND).
+
+**Ejemplo:**
+```typescript
+interface Nombre {
+  nombre: string;
+}
+
+interface Edad {
+  edad: number;
+}
+
+type Persona = Nombre & Edad;
+
+const persona: Persona = {
+  nombre: "Juan",
+  edad: 25
+  // Debe tener ambas propiedades
+};
+```
+
+##### **Type Guard**
+**Definición:** Función que verifica el tipo en tiempo de ejecución y permite a TypeScript reducir (narrow) el tipo dentro de un bloque de código.
+
+**Ejemplo:**
+```typescript
+// Type guard personalizado
+function esString(valor: unknown): valor is string {
+  return typeof valor === "string";
+}
+
+function procesar(valor: unknown): void {
+  if (esString(valor)) {
+    // TypeScript sabe que valor es string aquí
+    console.log(valor.toUpperCase());
+  } else {
+    // TypeScript sabe que valor NO es string
+    console.log("No es string");
+  }
+}
+```
+
+##### **Narrowing (Reducción de Tipos)**
+**Definición:** Proceso por el cual TypeScript reduce el tipo de una variable basándose en verificaciones de tipo.
+
+**Ejemplo:**
+```typescript
+function ejemplo(valor: string | number) {
+  if (typeof valor === "string") {
+    // Narrowing: TypeScript sabe que valor es string
+    console.log(valor.length);
+  } else {
+    // Narrowing: TypeScript sabe que valor es number
+    console.log(valor.toFixed(2));
+  }
+}
+```
+
+##### **Discriminated Union**
+**Definición:** Patrón donde un tipo union tiene una propiedad común (discriminador) que identifica cada variante.
+
+**Ejemplo:**
+```typescript
+type ResultadoExitoso = {
+  tipo: "exito";
+  datos: string[];
+};
+
+type ResultadoError = {
+  tipo: "error";
+  mensaje: string;
+};
+
+type Resultado = ResultadoExitoso | ResultadoError;
+
+function manejarResultado(resultado: Resultado): void {
+  if (resultado.tipo === "exito") {
+    // TypeScript sabe que es ResultadoExitoso
+    console.log(resultado.datos);
+  } else {
+    // TypeScript sabe que es ResultadoError
+    console.log(resultado.mensaje);
+  }
+}
+```
+
+##### **Conditional Type**
+**Definición:** Tipo que depende de una condición. Usa la sintaxis `T extends U ? X : Y` (similar a un operador ternario).
+
+**Ejemplo:**
+```typescript
+type EsArray<T> = T extends Array<any> ? true : false;
+
+type Test1 = EsArray<string[]>;  // true
+type Test2 = EsArray<string>;     // false
+
+// Extraer tipo de array
+type ExtraerTipoArray<T> = T extends Array<infer U> ? U : never;
+
+type TipoExtraido = ExtraerTipoArray<string[]>;  // string
+type TipoExtraido2 = ExtraerTipoArray<number[]>; // number
+```
+
+##### **`infer` Keyword**
+**Definición:** Permite inferir tipos dentro de conditional types. Se usa para extraer tipos de estructuras complejas.
+
+**Ejemplo:**
+```typescript
+// Extraer tipo de retorno de función
+type RetornoDeFuncion<T> = T extends (...args: any[]) => infer R ? R : never;
+
+type Retorno = RetornoDeFuncion<() => string>; // string
+
+// Extraer tipo de Promise
+type TipoPromise<T> = T extends Promise<infer U> ? U : never;
+
+type Tipo = TipoPromise<Promise<number>>; // number
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para tipos avanzados
+mkdir -p src/03-avanzado/tipos-avanzados
+touch src/03-avanzado/tipos-avanzados/union-intersection.ts
+touch src/03-avanzado/tipos-avanzados/type-guards.ts
+touch src/03-avanzado/tipos-avanzados/discriminated-unions.ts
+touch src/03-avanzado/tipos-avanzados/conditional-types.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/03-avanzado/tipos-avanzados/`
+- ✅ Crear archivo `src/03-avanzado/tipos-avanzados/union-intersection.ts`
+- ✅ Crear archivo `src/03-avanzado/tipos-avanzados/type-guards.ts`
+- ✅ Crear archivo `src/03-avanzado/tipos-avanzados/discriminated-unions.ts`
+- ✅ Crear archivo `src/03-avanzado/tipos-avanzados/conditional-types.ts`
+
 **📝 Ejercicios:**
 1. Crear union type `Resultado = Exito | Error` con type guards
 2. Crear intersection type `UsuarioCompleto = Usuario & Direccion`
@@ -1345,6 +2041,115 @@ tsc --watch
 - [ ] Pick, Omit, Record
 - [ ] Exclude, Extract, NonNullable
 - [ ] Crear utility types personalizados
+
+**📚 Conceptos Clave:**
+
+##### **Partial<T>**
+**Definición:** Hace todas las propiedades de un tipo opcionales.
+
+**Ejemplo:**
+```typescript
+interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+}
+
+type UsuarioParcial = Partial<Usuario>;
+// Equivale a: { id?: number; nombre?: string; email?: string; }
+
+function actualizarUsuario(id: number, datos: UsuarioParcial): void {
+  // Puede recibir solo algunas propiedades
+}
+```
+
+##### **Required<T>**
+**Definición:** Hace todas las propiedades de un tipo requeridas (incluso las que eran opcionales).
+
+**Ejemplo:**
+```typescript
+interface Config {
+  host?: string;
+  port?: number;
+}
+
+type ConfigRequerida = Required<Config>;
+// Todas las propiedades son obligatorias
+```
+
+##### **Readonly<T>**
+**Definición:** Hace todas las propiedades de un tipo de solo lectura.
+
+**Ejemplo:**
+```typescript
+interface Usuario {
+  id: number;
+  nombre: string;
+}
+
+type UsuarioSoloLectura = Readonly<Usuario>;
+
+const usuario: UsuarioSoloLectura = {
+  id: 1,
+  nombre: "Juan"
+};
+
+// usuario.nombre = "Pedro"; // ❌ Error: propiedad readonly
+```
+
+##### **Pick<T, K>**
+**Definición:** Selecciona propiedades específicas de un tipo.
+
+**Ejemplo:**
+```typescript
+interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+  password: string;
+}
+
+type UsuarioPublico = Pick<Usuario, "id" | "nombre" | "email">;
+// Solo incluye id, nombre y email (sin password)
+```
+
+##### **Omit<T, K>**
+**Definición:** Excluye propiedades específicas de un tipo.
+
+**Ejemplo:**
+```typescript
+type UsuarioSinPassword = Omit<Usuario, "password">;
+// Incluye todas las propiedades excepto password
+```
+
+##### **Record<K, T>**
+**Definición:** Crea un tipo objeto con claves de tipo K y valores de tipo T.
+
+**Ejemplo:**
+```typescript
+type UsuariosPorID = Record<number, Usuario>;
+// Equivale a: { [key: number]: Usuario }
+
+const usuarios: UsuariosPorID = {
+  1: { id: 1, nombre: "Juan" },
+  2: { id: 2, nombre: "María" }
+};
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para utility types
+mkdir -p src/03-avanzado/utility-types
+touch src/03-avanzado/utility-types/built-in.ts
+touch src/03-avanzado/utility-types/personalizados.ts
+touch src/03-avanzado/utility-types/ejercicios.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/03-avanzado/utility-types/`
+- ✅ Crear archivo `src/03-avanzado/utility-types/built-in.ts`
+- ✅ Crear archivo `src/03-avanzado/utility-types/personalizados.ts`
+- ✅ Crear archivo `src/03-avanzado/utility-types/ejercicios.ts`
 
 **📝 Ejercicios:**
 1. Usar `Partial<Usuario>` para función de actualización opcional
@@ -1363,6 +2168,56 @@ tsc --watch
 - [ ] Metadata y reflection
 - [ ] Decoradores en frameworks (NestJS)
 
+**📚 Conceptos Clave:**
+
+##### **Decorador**
+**Definición:** Función especial que modifica clases, métodos, propiedades o parámetros. Se denotan con `@` y se ejecutan en tiempo de ejecución.
+
+**Ejemplo:**
+```typescript
+// Decorador de método
+function Log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  const metodoOriginal = descriptor.value;
+  
+  descriptor.value = function (...args: any[]) {
+    console.log(`Llamando ${propertyKey} con:`, args);
+    const resultado = metodoOriginal.apply(this, args);
+    console.log(`Resultado:`, resultado);
+    return resultado;
+  };
+  
+  return descriptor;
+}
+
+class Calculadora {
+  @Log
+  sumar(a: number, b: number): number {
+    return a + b;
+  }
+}
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para decoradores
+mkdir -p src/03-avanzado/decoradores
+touch src/03-avanzado/decoradores/decoradores-metodo.ts
+touch src/03-avanzado/decoradores/decoradores-clase.ts
+touch src/03-avanzado/decoradores/decoradores-propiedad.ts
+touch src/03-avanzado/decoradores/metadata.ts
+
+# Modificar tsconfig.json para habilitar decoradores
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/03-avanzado/decoradores/`
+- ✅ Crear archivo `src/03-avanzado/decoradores/decoradores-metodo.ts`
+- ✅ Crear archivo `src/03-avanzado/decoradores/decoradores-clase.ts`
+- ✅ Crear archivo `src/03-avanzado/decoradores/decoradores-propiedad.ts`
+- ✅ Crear archivo `src/03-avanzado/decoradores/metadata.ts`
+- ✅ Modificar `tsconfig.json`: agregar `"experimentalDecorators": true` y `"emitDecoratorMetadata": true`
+- ✅ Instalar `reflect-metadata`: `npm install reflect-metadata`
+
 **📝 Ejercicios:**
 1. Crear decorador `@Log` que registre llamadas a métodos
 2. Crear decorador `@MedirTiempo` que mida tiempo de ejecución
@@ -1378,6 +2233,47 @@ tsc --watch
 - [ ] Template literal types
 - [ ] Pattern matching con tipos
 - [ ] Casos de uso prácticos
+
+**📚 Conceptos Clave:**
+
+##### **Template Literal Type**
+**Definición:** Permite crear tipos basados en strings usando template literals. Útil para crear tipos de strings con patrones específicos.
+
+**Ejemplo:**
+```typescript
+// String literal types
+type Evento = "click" | "scroll" | "mousemove";
+
+// Template literal type
+type EventoHandler = `on${Capitalize<Evento>}`;
+// "onClick" | "onScroll" | "onMousemove"
+
+// Pattern matching
+type RutaAPI = `/api/${string}`;
+
+function navegar(ruta: RutaAPI): void {
+  // ...
+}
+
+navegar("/api/products");  // ✅
+navegar("/api/users/123"); // ✅
+navegar("/products");      // ❌ Error
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para template literal types
+mkdir -p src/03-avanzado/template-literals
+touch src/03-avanzado/template-literals/string-literals.ts
+touch src/03-avanzado/template-literals/template-types.ts
+touch src/03-avanzado/template-literals/pattern-matching.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/03-avanzado/template-literals/`
+- ✅ Crear archivo `src/03-avanzado/template-literals/string-literals.ts`
+- ✅ Crear archivo `src/03-avanzado/template-literals/template-types.ts`
+- ✅ Crear archivo `src/03-avanzado/template-literals/pattern-matching.ts`
 
 **📝 Ejercicios:**
 1. Crear tipo `Evento` como `"click" | "scroll" | "mousemove"`
@@ -1397,6 +2293,63 @@ tsc --watch
 - [ ] Códigos de estado HTTP
 - [ ] Estructura de respuestas JSON
 
+**📚 Conceptos Clave:**
+
+##### **API (Application Programming Interface)**
+**Definición:** Conjunto de reglas y protocolos que permite que diferentes aplicaciones se comuniquen entre sí. Define cómo solicitar y recibir datos.
+
+**Ejemplo:**
+```typescript
+// Cliente API tipado
+class APICliente {
+  async obtener<T>(url: string): Promise<T> {
+    const respuesta = await fetch(url);
+    return await respuesta.json();
+  }
+  
+  async crear<T>(url: string, datos: T): Promise<T> {
+    const respuesta = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(datos)
+    });
+    return await respuesta.json();
+  }
+}
+```
+
+##### **REST (Representational State Transfer)**
+**Definición:** Estilo arquitectónico para diseñar servicios web. Usa métodos HTTP estándar (GET, POST, PUT, DELETE) para operaciones CRUD.
+
+**Ejemplo:**
+```typescript
+// Endpoints REST tipados
+interface Endpoints {
+  GET: "/api/usuarios";
+  POST: "/api/usuarios";
+  PUT: "/api/usuarios/:id";
+  DELETE: "/api/usuarios/:id";
+}
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta y archivos para APIs
+mkdir -p src/04-apis/documentacion
+mkdir -p src/04-apis/types
+touch src/04-apis/documentacion/rest-api.md
+touch src/04-apis/types/http-types.ts
+touch src/04-apis/types/api-response.ts
+touch src/04-apis/types/endpoints.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/04-apis/documentacion/`
+- ✅ Crear carpeta `src/04-apis/types/`
+- ✅ Crear archivo `src/04-apis/documentacion/rest-api.md` (documentación)
+- ✅ Crear archivo `src/04-apis/types/http-types.ts`
+- ✅ Crear archivo `src/04-apis/types/api-response.ts`
+- ✅ Crear archivo `src/04-apis/types/endpoints.ts`
+
 **📝 Ejercicios:**
 1. Documentar estructura de API REST para sistema de blog
 2. Crear tipos TypeScript para códigos de estado HTTP comunes
@@ -1412,6 +2365,79 @@ tsc --watch
 - [ ] Axios con TypeScript
 - [ ] Manejo de errores tipado
 - [ ] Interceptores y transformaciones
+
+**📚 Conceptos Clave:**
+
+##### **Promise**
+**Definición:** Objeto que representa el resultado eventual de una operación asíncrona. Puede estar pendiente, resuelta o rechazada.
+
+**Ejemplo:**
+```typescript
+function obtenerUsuario(id: number): Promise<Usuario> {
+  return fetch(`/api/usuarios/${id}`)
+    .then(respuesta => respuesta.json());
+}
+```
+
+##### **Async/Await**
+**Definición:** Sintaxis para trabajar con Promises de forma más legible. `async` marca una función como asíncrona, `await` espera la resolución de una Promise.
+
+**Ejemplo:**
+```typescript
+async function obtenerUsuario(id: number): Promise<Usuario> {
+  const respuesta = await fetch(`/api/usuarios/${id}`);
+  const usuario = await respuesta.json();
+  return usuario;
+}
+
+// Uso
+async function ejemplo() {
+  try {
+    const usuario = await obtenerUsuario(1);
+    console.log(usuario);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+```
+
+##### **Type Assertion (Aserción de Tipos)**
+**Definición:** Forma de decirle a TypeScript que trate un valor como un tipo específico. No cambia el valor en tiempo de ejecución, solo el tipo en tiempo de compilación.
+
+**Ejemplo:**
+```typescript
+// Sintaxis con 'as'
+let valor: unknown = "hola";
+let longitud = (valor as string).length;
+
+// Útil con respuestas de API
+const respuesta = await fetch("/api/usuario");
+const usuario = await respuesta.json() as Usuario;
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura para consumo de APIs
+mkdir -p src/04-apis/consumo
+mkdir -p src/04-apis/consumo/clients
+mkdir -p src/04-apis/consumo/services
+touch src/04-apis/consumo/fetch-api.ts
+touch src/04-apis/consumo/clients/axios-client.ts
+touch src/04-apis/consumo/clients/api-client.ts
+touch src/04-apis/consumo/services/github-service.ts
+touch src/04-apis/consumo/utils/error-handler.ts
+touch src/04-apis/consumo/utils/retry.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/04-apis/consumo/` con subcarpetas `clients/`, `services/`, `utils/`
+- ✅ Crear archivo `src/04-apis/consumo/fetch-api.ts`
+- ✅ Crear archivo `src/04-apis/consumo/clients/axios-client.ts`
+- ✅ Crear archivo `src/04-apis/consumo/clients/api-client.ts`
+- ✅ Crear archivo `src/04-apis/consumo/services/github-service.ts`
+- ✅ Crear archivo `src/04-apis/consumo/utils/error-handler.ts`
+- ✅ Crear archivo `src/04-apis/consumo/utils/retry.ts`
+- ✅ Instalar dependencias: `npm install axios` y `npm install -D @types/node`
 
 **📝 Ejercicios:**
 1. Crear función `obtenerUsuario(id: number)` usando Fetch API tipada
@@ -1430,6 +2456,44 @@ tsc --watch
 - [ ] Middleware tipado
 - [ ] Validación de datos con Zod/Yup
 
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura completa para API Express
+mkdir -p src/04-apis/creacion/express-api
+mkdir -p src/04-apis/creacion/express-api/controllers
+mkdir -p src/04-apis/creacion/express-api/routes
+mkdir -p src/04-apis/creacion/express-api/middleware
+mkdir -p src/04-apis/creacion/express-api/models
+mkdir -p src/04-apis/creacion/express-api/utils
+
+touch src/04-apis/creacion/express-api/app.ts
+touch src/04-apis/creacion/express-api/server.ts
+touch src/04-apis/creacion/express-api/controllers/usuario.controller.ts
+touch src/04-apis/creacion/express-api/routes/usuario.routes.ts
+touch src/04-apis/creacion/express-api/middleware/auth.middleware.ts
+touch src/04-apis/creacion/express-api/middleware/validation.middleware.ts
+touch src/04-apis/creacion/express-api/middleware/error.middleware.ts
+touch src/04-apis/creacion/express-api/models/usuario.model.ts
+touch src/04-apis/creacion/express-api/utils/validators.ts
+touch .env.example
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear estructura completa de carpetas para Express API
+- ✅ Crear archivo `src/04-apis/creacion/express-api/app.ts` (configuración Express)
+- ✅ Crear archivo `src/04-apis/creacion/express-api/server.ts` (inicio del servidor)
+- ✅ Crear archivo `src/04-apis/creacion/express-api/controllers/usuario.controller.ts`
+- ✅ Crear archivo `src/04-apis/creacion/express-api/routes/usuario.routes.ts`
+- ✅ Crear archivo `src/04-apis/creacion/express-api/middleware/auth.middleware.ts`
+- ✅ Crear archivo `src/04-apis/creacion/express-api/middleware/validation.middleware.ts`
+- ✅ Crear archivo `src/04-apis/creacion/express-api/middleware/error.middleware.ts`
+- ✅ Crear archivo `src/04-apis/creacion/express-api/models/usuario.model.ts`
+- ✅ Crear archivo `src/04-apis/creacion/express-api/utils/validators.ts`
+- ✅ Crear archivo `.env.example` (plantilla de variables de entorno)
+- ✅ Modificar `package.json`: agregar scripts `"dev": "ts-node src/04-apis/creacion/express-api/server.ts"`
+- ✅ Instalar dependencias: `npm install express cors dotenv` y `npm install -D @types/express @types/cors`
+- ✅ Instalar validación: `npm install zod` (o `yup`)
+
 **📝 Ejercicios:**
 1. Configurar proyecto Express + TypeScript desde cero
 2. Crear ruta GET `/api/usuarios` con tipado completo
@@ -1447,6 +2511,36 @@ tsc --watch
 - [ ] Manejo de errores centralizado
 - [ ] Validación de entrada
 - [ ] Documentación con Swagger/OpenAPI
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear proyecto completo de API de Tareas
+mkdir -p src/06-proyectos/api-tareas
+mkdir -p src/06-proyectos/api-tareas/src/{controllers,routes,models,middleware,services,utils,tests}
+mkdir -p src/06-proyectos/api-tareas/docs
+
+touch src/06-proyectos/api-tareas/src/app.ts
+touch src/06-proyectos/api-tareas/src/server.ts
+touch src/06-proyectos/api-tareas/src/controllers/tarea.controller.ts
+touch src/06-proyectos/api-tareas/src/routes/tarea.routes.ts
+touch src/06-proyectos/api-tareas/src/models/tarea.model.ts
+touch src/06-proyectos/api-tareas/src/services/tarea.service.ts
+touch src/06-proyectos/api-tareas/src/middleware/error.middleware.ts
+touch src/06-proyectos/api-tareas/src/middleware/validation.middleware.ts
+touch src/06-proyectos/api-tareas/src/utils/validators.ts
+touch src/06-proyectos/api-tareas/src/tests/tarea.test.ts
+touch src/06-proyectos/api-tareas/docs/swagger.yaml
+touch src/06-proyectos/api-tareas/README.md
+touch src/06-proyectos/api-tareas/.env.example
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/06-proyectos/api-tareas/` con estructura completa
+- ✅ Crear todos los archivos listados arriba
+- ✅ Crear archivo `src/06-proyectos/api-tareas/package.json` (si es proyecto independiente)
+- ✅ Crear archivo `src/06-proyectos/api-tareas/tsconfig.json` (si es proyecto independiente)
+- ✅ Instalar Swagger: `npm install swagger-ui-express swagger-jsdoc` y `npm install -D @types/swagger-ui-express @types/swagger-jsdoc`
+- ✅ Instalar testing: `npm install -D jest @types/jest ts-jest supertest @types/supertest`
 
 **📝 Ejercicios:**
 1. Crear modelo `Tarea` con tipos: id, titulo, descripcion, completada, fechaCreacion
@@ -1469,6 +2563,67 @@ tsc --watch
 - [ ] Comparativa de ORMs populares
 - [ ] Migraciones y esquemas
 
+**📚 Conceptos Clave:**
+
+##### **ORM (Object-Relational Mapping)**
+**Definición:** Técnica que mapea objetos de programación orientada a objetos a tablas de bases de datos relacionales. Permite trabajar con BD usando objetos en lugar de SQL directo.
+
+**Ejemplo con TypeORM:**
+```typescript
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+
+@Entity("usuarios")
+export class Usuario {
+  @PrimaryGeneratedColumn()
+  id!: number;
+  
+  @Column()
+  nombre!: string;
+  
+  @Column()
+  email!: string;
+}
+
+// Uso sin escribir SQL
+const usuario = await usuarioRepository.findOne({ where: { id: 1 } });
+```
+
+**Ejemplo con Prisma:**
+```prisma
+// schema.prisma
+model Usuario {
+  id    Int    @id @default(autoincrement())
+  nombre String
+  email  String @unique
+}
+```
+
+```typescript
+// Código generado automáticamente con tipos
+const usuario = await prisma.usuario.findUnique({
+  where: { id: 1 }
+});
+```
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear carpeta para documentación de ORMs
+mkdir -p src/05-orms/documentacion
+mkdir -p src/05-orms/esquemas
+touch src/05-orms/documentacion/comparativa.md
+touch src/05-orms/documentacion/ventajas-desventajas.md
+touch src/05-orms/esquemas/blog-schema.md
+touch src/05-orms/esquemas/ecommerce-schema.md
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/05-orms/documentacion/`
+- ✅ Crear carpeta `src/05-orms/esquemas/`
+- ✅ Crear archivo `src/05-orms/documentacion/comparativa.md`
+- ✅ Crear archivo `src/05-orms/documentacion/ventajas-desventajas.md`
+- ✅ Crear archivo `src/05-orms/esquemas/blog-schema.md`
+- ✅ Crear archivo `src/05-orms/esquemas/ecommerce-schema.md`
+
 **📝 Ejercicios:**
 1. Investigar y documentar diferencias entre TypeORM, Prisma, Sequelize
 2. Crear diagrama de entidad-relación para sistema de blog
@@ -1484,6 +2639,39 @@ tsc --watch
 - [ ] Entidades y decoradores
 - [ ] Relaciones (OneToMany, ManyToOne, ManyToMany)
 - [ ] Queries tipadas y Query Builder
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura para TypeORM
+mkdir -p src/05-orms/typeorm
+mkdir -p src/05-orms/typeorm/entities
+mkdir -p src/05-orms/typeorm/repositories
+mkdir -p src/05-orms/typeorm/migrations
+mkdir -p src/05-orms/typeorm/seeders
+
+touch src/05-orms/typeorm/data-source.ts
+touch src/05-orms/typeorm/entities/Usuario.ts
+touch src/05-orms/typeorm/entities/Post.ts
+touch src/05-orms/typeorm/entities/Categoria.ts
+touch src/05-orms/typeorm/repositories/usuario.repository.ts
+touch src/05-orms/typeorm/migrations/0000000000001-InitialMigration.ts
+touch src/05-orms/typeorm/seeders/seed.ts
+touch src/05-orms/typeorm/ormconfig.json
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/05-orms/typeorm/` con subcarpetas `entities/`, `repositories/`, `migrations/`, `seeders/`
+- ✅ Crear archivo `src/05-orms/typeorm/data-source.ts` (configuración DataSource)
+- ✅ Crear archivo `src/05-orms/typeorm/entities/Usuario.ts`
+- ✅ Crear archivo `src/05-orms/typeorm/entities/Post.ts`
+- ✅ Crear archivo `src/05-orms/typeorm/entities/Categoria.ts`
+- ✅ Crear archivo `src/05-orms/typeorm/repositories/usuario.repository.ts`
+- ✅ Crear archivo `src/05-orms/typeorm/migrations/0000000000001-InitialMigration.ts`
+- ✅ Crear archivo `src/05-orms/typeorm/seeders/seed.ts`
+- ✅ Crear archivo `src/05-orms/typeorm/ormconfig.json` (configuración)
+- ✅ Modificar `.env`: agregar `DATABASE_URL`
+- ✅ Instalar dependencias: `npm install typeorm reflect-metadata` y driver de BD (`npm install mysql2` o `pg` o `sqlite3`)
+- ✅ Instalar CLI: `npm install -D typeorm`
 
 **📝 Ejercicios:**
 1. Configurar TypeORM con SQLite/PostgreSQL
@@ -1504,6 +2692,30 @@ tsc --watch
 - [ ] Client generado con tipos
 - [ ] Migraciones y seeding
 
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura para Prisma
+mkdir -p src/05-orms/prisma
+mkdir -p src/05-orms/prisma/migrations
+mkdir -p src/05-orms/prisma/seed
+
+touch src/05-orms/prisma/schema.prisma
+touch src/05-orms/prisma/seed.ts
+touch src/05-orms/prisma/prisma-client.ts
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/05-orms/prisma/` con subcarpetas `migrations/`, `seed/`
+- ✅ Crear archivo `src/05-orms/prisma/schema.prisma` (schema definition)
+- ✅ Crear archivo `src/05-orms/prisma/seed.ts` (seeding)
+- ✅ Crear archivo `src/05-orms/prisma/prisma-client.ts` (instancia del cliente)
+- ✅ Modificar `.env`: agregar `DATABASE_URL`
+- ✅ Instalar dependencias: `npm install prisma @prisma/client`
+- ✅ Instalar como dev: `npm install -D prisma`
+- ✅ Ejecutar: `npx prisma init` (si es primera vez)
+- ✅ Ejecutar: `npx prisma generate` (generar cliente)
+- ✅ Ejecutar: `npx prisma migrate dev --name init` (crear migración inicial)
+
 **📝 Ejercicios:**
 1. Configurar Prisma con PostgreSQL/MySQL
 2. Crear schema.prisma con modelos Usuario, Post, Comentario
@@ -1523,6 +2735,33 @@ tsc --watch
 - [ ] Implementar CRUD completo
 - [ ] Relaciones entre entidades
 - [ ] Testing de endpoints
+
+**📁 Estructura de Archivos:**
+```bash
+# Integrar ORM con API existente o crear nuevo proyecto
+mkdir -p src/06-proyectos/backend-orm
+mkdir -p src/06-proyectos/backend-orm/src/{controllers,routes,services,entities,repositories,middleware,tests,config}
+
+touch src/06-proyectos/backend-orm/src/config/database.ts
+touch src/06-proyectos/backend-orm/src/entities/Usuario.ts
+touch src/06-proyectos/backend-orm/src/entities/Post.ts
+touch src/06-proyectos/backend-orm/src/repositories/usuario.repository.ts
+touch src/06-proyectos/backend-orm/src/services/usuario.service.ts
+touch src/06-proyectos/backend-orm/src/controllers/usuario.controller.ts
+touch src/06-proyectos/backend-orm/src/routes/usuario.routes.ts
+touch src/06-proyectos/backend-orm/src/tests/usuario.integration.test.ts
+touch src/06-proyectos/backend-orm/.env.example
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/06-proyectos/backend-orm/` con estructura completa
+- ✅ Crear archivo `src/06-proyectos/backend-orm/src/config/database.ts` (conexión BD)
+- ✅ Crear todas las entidades necesarias
+- ✅ Crear repositorios y servicios tipados
+- ✅ Modificar controladores existentes para usar ORM
+- ✅ Crear archivo `.env.example` con variables de BD
+- ✅ Crear archivo `src/06-proyectos/backend-orm/src/tests/setup.ts` (configuración de tests)
+- ✅ Modificar `package.json`: agregar script de test
 
 **📝 Ejercicios:**
 1. Conectar Express API con TypeORM/Prisma
@@ -1546,6 +2785,55 @@ tsc --watch
 - [ ] Integración completa tipada
 - [ ] Deploy y documentación
 
+**📁 Estructura de Archivos:**
+```bash
+# Crear proyecto full-stack completo
+mkdir -p src/06-proyectos/full-stack
+mkdir -p src/06-proyectos/full-stack/backend
+mkdir -p src/06-proyectos/full-stack/frontend
+mkdir -p src/06-proyectos/full-stack/shared
+
+# Backend
+mkdir -p src/06-proyectos/full-stack/backend/src/{controllers,routes,services,entities,middleware,config}
+touch src/06-proyectos/full-stack/backend/src/app.ts
+touch src/06-proyectos/full-stack/backend/src/server.ts
+touch src/06-proyectos/full-stack/backend/.env.example
+touch src/06-proyectos/full-stack/backend/package.json
+touch src/06-proyectos/full-stack/backend/tsconfig.json
+
+# Frontend
+mkdir -p src/06-proyectos/full-stack/frontend/src/{components,services,types,utils,hooks}
+touch src/06-proyectos/full-stack/frontend/src/App.tsx
+touch src/06-proyectos/full-stack/frontend/src/main.tsx
+touch src/06-proyectos/full-stack/frontend/src/services/api.ts
+touch src/06-proyectos/full-stack/frontend/.env.example
+touch src/06-proyectos/full-stack/frontend/package.json
+touch src/06-proyectos/full-stack/frontend/tsconfig.json
+touch src/06-proyectos/full-stack/frontend/vite.config.ts
+
+# Tipos compartidos
+mkdir -p src/06-proyectos/full-stack/shared/types
+touch src/06-proyectos/full-stack/shared/types/index.ts
+touch src/06-proyectos/full-stack/shared/package.json
+touch src/06-proyectos/full-stack/shared/tsconfig.json
+
+# Documentación
+touch src/06-proyectos/full-stack/README.md
+touch src/06-proyectos/full-stack/DEPLOY.md
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear estructura completa de proyecto full-stack
+- ✅ Crear carpetas `backend/`, `frontend/`, `shared/`
+- ✅ Crear todos los archivos listados arriba
+- ✅ Crear `package.json` independiente para cada parte (backend, frontend, shared)
+- ✅ Crear `tsconfig.json` para cada parte
+- ✅ Crear archivo `src/06-proyectos/full-stack/shared/types/index.ts` (tipos compartidos)
+- ✅ Crear archivo `src/06-proyectos/full-stack/DEPLOY.md` (guía de deploy)
+- ✅ Configurar monorepo (opcional): usar `npm workspaces` o `lerna`
+- ✅ Instalar dependencias en cada parte del proyecto
+- ✅ Crear archivos de configuración de deploy (`.github/workflows/`, `vercel.json`, etc.)
+
 **📝 Ejercicios:**
 1. Crear backend completo con Express + TypeORM/Prisma
 2. Configurar React/Vue con TypeScript desde cero
@@ -1566,6 +2854,39 @@ tsc --watch
 - [ ] Implementar patrones de diseño
 - [ ] Optimización de tipos
 - [ ] Documentación final
+
+**📁 Estructura de Archivos:**
+```bash
+# Crear estructura para refactorización
+mkdir -p src/07-principios-solid
+mkdir -p src/07-principios-solid/patrones
+mkdir -p src/07-principios-solid/refactor
+mkdir -p src/types
+mkdir -p docs
+
+touch src/07-principios-solid/patrones/repository.ts
+touch src/07-principios-solid/patrones/factory.ts
+touch src/07-principios-solid/patrones/strategy.ts
+touch src/07-principios-solid/refactor/refactor-guide.md
+touch src/types/index.d.ts
+touch docs/CONTRIBUTING.md
+touch docs/TYPE-STANDARDS.md
+touch .dtslintrc.json
+```
+
+**📝 Archivos a crear/modificar:**
+- ✅ Crear carpeta `src/07-principios-solid/` con subcarpetas `patrones/`, `refactor/`
+- ✅ Crear carpeta `src/types/` para tipos compartidos
+- ✅ Crear carpeta `docs/` para documentación
+- ✅ Crear archivos de patrones de diseño
+- ✅ Crear archivo `src/types/index.d.ts` (declaraciones globales)
+- ✅ Crear archivo `docs/CONTRIBUTING.md` (guía de contribución)
+- ✅ Crear archivo `docs/TYPE-STANDARDS.md` (estándares de tipos)
+- ✅ Crear archivo `.dtslintrc.json` (configuración de tests de tipos)
+- ✅ Renombrar archivos existentes si es necesario para mejor organización
+- ✅ Mover código a carpetas apropiadas según principios SOLID
+- ✅ Modificar imports en archivos afectados por refactorización
+- ✅ Instalar herramientas: `npm install -D tsd dtslint`
 
 **📝 Ejercicios:**
 1. Refactorizar código aplicando Single Responsibility Principle
