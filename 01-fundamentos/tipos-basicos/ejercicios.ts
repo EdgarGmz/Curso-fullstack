@@ -182,8 +182,25 @@ el promedio de sus elementos
  * Crea una función que acepte un array de numeros y retorne el mayor
  * y el menor usando un objeto.
  */
-function obtenerMayorYMenor(numeros: number[]): { mayor: number, menor: number }{
-    let mayor: number = Math.max(...numeros)
-    let menor: number = Math.min(...numeros)
-    return { mayor, menor }
-}
+
+// let numeros: number[] = [12,34,6,7,3346,23,6,468,967,345,45,723534,234.234]
+
+// function obtenerMayorYMenor(numeros: number[]): { mayor: number, menor: number }{
+//     let mayor: number = Math.max(...numeros)
+//     let menor: number = Math.min(...numeros)
+//     return { mayor, menor }
+// }
+
+// let resultado = obtenerMayorYMenor(numeros)
+
+// console.log(`El numero mayor es: ${resultado.mayor} y el numero menor es: ${resultado.menor}`)
+
+/**
+ * EJERCICIO #14
+ * Crea una tupla para presentar informacion de un libro: titulo (string),
+ * anio de publicacion (number), autor (string) y disponible (boolean).
+ * Declara una variable con ese tipo y asegurale valores.
+ */
+
+let libro: [string, number, string, boolean] = ['Pensar rapido, pensar despacio', 2011, 'Daniel Kahneman', true]
+console.log(`Titulo: ${libro}`)
