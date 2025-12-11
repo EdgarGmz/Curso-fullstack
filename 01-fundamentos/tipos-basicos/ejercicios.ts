@@ -169,10 +169,21 @@ el promedio de sus elementos
  * se proporciona, imprimelo; si no, imprime 'No se proporciona parametro´.
  */
 
-function mostrarParametro(parametro?: string): void{
-    if(parametro) console.log(`El parametro proporcionado es: ${parametro}`)
-    else console.log("No se proporciona parametro")
-}
+// function mostrarParametro(parametro?: string): void{
+//     if(parametro) console.log(`El parametro proporcionado es: ${parametro}`)
+//     else console.log("No se proporciona parametro")
+// }
 
-mostrarParametro("Hola Mundo!")
-mostrarParametro()
+// mostrarParametro("Hola Mundo!")
+// mostrarParametro()
+
+// EJERCICIO #13
+/**
+ * Crea una función que acepte un array de numeros y retorne el mayor
+ * y el menor usando un objeto.
+ */
+function obtenerMayorYMenor(numeros: number[]): { mayor: number, menor: number }{
+    let mayor: number = Math.max(...numeros)
+    let menor: number = Math.min(...numeros)
+    return { mayor, menor }
+}
