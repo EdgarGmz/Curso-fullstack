@@ -322,3 +322,44 @@ function getTotal(b: boolean[] ) : {f_totales:number ; t_totales:number} {
 
 const totales = getTotal(b)
 console.log(`El numero de elementos verdaderos son: ${totales.t_totales} \ny el número de elementos falsos es: ${totales.f_totales}`)
+
+// EJERCICIO: Reduce()
+/**
+ * Dado un conjunto de nuemeros calcula el numero de positivos,
+ * el numero de negativos, numero de '0', la suma de positivos
+ * y la suma total
+ */
+
+let l : number[]=[
+    1,2,54,8,-234,234,-98,0,12,-43,-100,43,6,0,0
+]
+
+function getResult(l:number[]): { positivos: number ; negativos: number ; 
+    ceros: number ; suma_positivos: number; suma_total : number }{      
+
+    return l.reduce(
+        (acc, valor) =>{
+
+            // Suma total siempre
+            acc.suma_total += valor
+
+            if(valor === 0){
+                acc.ceros++
+            } else if(valor < 0 ){
+                acc.negativos++
+            } else {
+                acc.positivos++
+                acc.suma_positivos += valor
+            }            
+            return acc
+        },{
+            positivos : 0,
+            negativos: 0,
+            ceros: 0,
+            suma_positivos: 0,
+            suma_total: 0
+        })
+}
+
+const resultado = getResult(l)
+console.log(`Totales de numeros positivos: ${resultado.positivos}\nTotales de números negativos: ${resultado.negativos}\nTotales de 0: ${resultado.ceros}\nSuma de números positivos: ${resultado.suma_positivos}\nSuma Total: ${resultado.suma_total}`)
