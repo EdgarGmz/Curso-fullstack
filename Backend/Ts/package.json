@@ -1,0 +1,26 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "Repositorio dedicado al aprendizaje de TypeScript desde conceptos básicos hasta avanzados, con enfoque en desarrollo full-stack y buenas prácticas de programación.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdgarGmz/TypeScript.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/EdgarGmz/TypeScript/issues"
+  },
+  "homepage": "https://github.com/EdgarGmz/TypeScript#readme"
+}
