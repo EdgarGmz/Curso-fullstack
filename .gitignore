@@ -1,0 +1,305 @@
+# ============================================
+# Archivos del Sistema Operativo
+# ============================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# IDEs y Editores
+# ============================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# Node.js y npm
+# ============================================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependencias
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ============================================
+# TypeScript
+# ============================================
+
+# Archivos compilados
+*.js.map
+*.d.ts.map
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# ============================================
+# Python
+# ============================================
+
+# Entornos virtuales
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Archivos compilados
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribución / empaquetado
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+*.egg
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# ============================================
+# Java
+# ============================================
+
+# Archivos compilados
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# Directorios de build
+target/
+build/
+out/
+bin/
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# ============================================
+# C# / .NET
+# ============================================
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ============================================
+# PHP
+# ============================================
+
+# Composer
+/vendor/
+composer.lock
+
+# Laravel
+/storage/*.key
+/storage/logs/
+.env
+.env.backup
+.phpunit.result.cache
+
+# ============================================
+# Bases de Datos
+# ============================================
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# MySQL
+*.sql.gz
+*.sql.bz2
+
+# PostgreSQL
+*.pgsql
+
+# MongoDB
+*.bson
+
+# Archivos de dump
+*.dump
+*.sql
+
+# ============================================
+# Frontend - Build y Caché
+# ============================================
+
+# React / Next.js
+.next/
+out/
+build/
+dist/
+.vercel
+
+# Angular
+.angular/
+dist/
+tmp/
+out-tsc/
+*.ngfactory.ts
+
+# Vue.js
+dist/
+dist-ssr/
+*.local
+
+# Astro
+.astro/
+dist/
+
+# ============================================
+# Archivos de Entorno y Configuración
+# ============================================
+
+# Variables de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Archivos de configuración sensibles
+config.json
+secrets.json
+*.pem
+*.key
+*.cert
+
+# ============================================
+# Logs
+# ============================================
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================
+# Testing
+# ============================================
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Jest
+.jest/
+
+# ============================================
+# Temporal y Archivos de Usuario
+# ============================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
+
+# ============================================
+# Archivos de Sistema
+# ============================================
+
+# Archivos de respaldo
+*.bak
+*.backup
+*.old
+
+# Archivos comprimidos (opcional, descomenta si no quieres versiones comprimidas)
+# *.zip
+# *.tar
+# *.tar.gz
+# *.rar
+
