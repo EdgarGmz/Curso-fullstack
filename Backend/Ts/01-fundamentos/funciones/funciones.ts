@@ -34,3 +34,5 @@ const multiplicar = (x:number, y:number) : number => {
 
 // Forma de invocar el metodo flecha
 console.log(`El resultado de la multiplicacion es: ${multiplicar(3,3)}`)
+
+

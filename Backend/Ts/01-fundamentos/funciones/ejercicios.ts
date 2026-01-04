@@ -176,3 +176,14 @@ function getFirstElementTipado <T> ( a : T[] ) : T | undefined{
 console.log(`El primer elemento del arreglo es ${getFirstElementTipado(ciencias)}`)
 console.log(`El primer elemento del arreglo es ${getFirstElementTipado(numeros)}`)
 console.log(`El primer elemento del arreglo es ${getFirstElementTipado(bool)}`)
+
+/**
+ * EJERCICIO #11
+ */
+// TODO: Callbacks
+function ejecutar(fn: (msg: string) => void){
+    fn("Hola desde ejecutar...")
+}
+
+// ejecutamos la función
+ejecutar(msg => console.log(msg))
