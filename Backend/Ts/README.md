@@ -10,21 +10,14 @@
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![TypeORM](https://img.shields.io/badge/TypeORM-FE0902?style=for-the-badge&logo=typeorm&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 </div>
 
-> Repositorio dedicado al aprendizaje completo de TypeScript desde conceptos básicos hasta avanzados, con enfoque en desarrollo full-stack, APIs, ORMs y buenas prácticas de programación.
+> Curso completo de TypeScript con aprendizaje incremental y secuencial. Cada tema incluye definición, ejemplos prácticos y ejercicios para reforzar el conocimiento.
 
 ---
 
 ## 📑 Tabla de Contenidos
-
-### 🧭 Navegación Principal
-- [🚀 Inicio Rápido](#-inicio-rápido)
-- [📋 Requisitos Mínimos](#-requisitos-mínimos)
-- [📖 Conceptos Clave con Definiciones](#-conceptos-clave-con-definiciones)
-- [🗺️ Roadmap del Curso](#️-roadmap-del-curso)
 
 ### 📚 Contenido del Curso
 
@@ -76,29 +69,18 @@
   - [Ejemplo 1: Sistema de Gestión de Tareas](#-ejemplo-1-sistema-de-gestión-de-tareas)
   - [Ejemplo 2: Cliente API Tipado para GitHub](#-ejemplo-2-cliente-api-tipado-para-github)
 
-### ℹ️ Información Adicional
-- [📝 Progreso del Curso](#-progreso-del-curso)
-- [🎯 Recursos Adicionales](#-recursos-adicionales)
-- [🤝 Contribuciones](#-contribuciones)
-- [📄 Licencia](#-licencia)
-- [👨‍💻 Autor](#-autor)
-
 ---
 
-**💡 Tip:** Usa `Ctrl+F` (o `Cmd+F` en Mac) para buscar rápidamente cualquier concepto en este documento.
-
----
-
-## 📖 Conceptos Clave con Definiciones
+## 📚 Fundamentos Básicos
 
 <div align="center">
 
-![Concepts](https://img.shields.io/badge/Conceptos-Integrados-9C27B0?style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/TypeScript-Fundamentals-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Fundamentos](https://img.shields.io/badge/Fundamentos-Básicos-4CAF50?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-Basics-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
 </div>
 
-> 💡 **Nota:** Los conceptos clave están integrados en cada paso del roadmap para facilitar el aprendizaje contextual. Cada paso incluye las definiciones y ejemplos relevantes justo cuando los necesitas.
+> 💡 **Estructura de Aprendizaje:** Cada tema incluye **Definición**, **Ejemplos** y **Ejercicios** para un aprendizaje incremental y secuencial.
 
 **🎯 Navegación Rápida de Conceptos:**
 - **Paso 2:** Tipos básicos (Type, any, unknown, never, void)
@@ -116,21 +98,47 @@
 - **Paso 17:** ORM
 - **Paso 22:** Principios SOLID (SRP, OCP, DIP)
 
-> 💡 **Tip:** Cada concepto está explicado con definición y ejemplos prácticos directamente en el paso del roadmap donde se aprende. Esto facilita el aprendizaje contextual y la práctica inmediata.
+### 1. Tipos Primitivos
 
----
-**Definición:** Un tipo en TypeScript es una forma de describir la forma y el comportamiento de un valor. Define qué operaciones se pueden realizar con ese valor y qué datos puede contener.
+**Definición:** Los tipos primitivos son los tipos básicos de TypeScript que representan valores simples: `string`, `number`, `boolean`, `null`, `undefined`. Además, TypeScript incluye tipos especiales como `any`, `unknown`, `never` y `void` para casos específicos.
 
-**Ejemplo:**
+**Ejemplos:**
+
 ```typescript
-// Tipos primitivos
+// Tipos primitivos básicos
 let nombre: string = "Juan";
 let edad: number = 25;
 let activo: boolean = true;
+let valor: null = null;
+let indefinido: undefined = undefined;
 
 // TypeScript infiere el tipo automáticamente
 let ciudad = "Madrid"; // TypeScript sabe que es string
+
+// Tipos especiales
+let cualquier: any = "puede ser cualquier cosa";
+let desconocido: unknown = "necesita verificación";
+
+// Tipo never - para funciones que nunca retornan
+function lanzarError(mensaje: string): never {
+  throw new Error(mensaje);
+}
+
+// Tipo void - para funciones sin retorno
+function mostrarMensaje(mensaje: string): void {
+  console.log(mensaje);
+}
 ```
+
+**Ejercicios:**
+
+1. Declara variables de tipo `string`, `number` y `boolean` con valores apropiados
+2. Crea una función que reciba un parámetro de tipo `unknown` y verifique si es string antes de usarlo
+3. Implementa una función que retorne `never` (por ejemplo, que lance un error)
+4. Crea una función con tipo de retorno `void` que imprima un mensaje en consola
+5. Compara el uso de `any` vs `unknown` en un ejemplo práctico
+
+---
 
 #### **Tipo `any`**
 **Definición:** Permite cualquier tipo de valor y desactiva la verificación de tipos. Útil para migración gradual desde JavaScript, pero debe evitarse en código nuevo.
@@ -186,19 +194,50 @@ function mostrarMensaje(mensaje: string): void {
 
 ---
 
-### 🏗️ Interfaces y Types
+### 2. Objetos y Arrays
 
-#### **Interface**
-**Definición:** Una interfaz define la estructura de un objeto, especificando qué propiedades debe tener y sus tipos. Permite declaración merging (fusionar múltiples declaraciones).
+**Definición:** Los objetos en TypeScript se pueden tipar de forma inline o usando interfaces/types. Los arrays pueden tiparse con `T[]` o `Array<T>`. Las tuplas permiten arrays con tipos específicos en cada posición.
 
-**Ejemplo:**
+**Ejemplos:**
+
 ```typescript
+// Tipado inline de objetos
+let usuario: { nombre: string; edad: number } = {
+  nombre: "Juan",
+  edad: 25
+};
+
+// Con interface (recomendado)
 interface Usuario {
-  id: number;
   nombre: string;
-  email: string;
-  activo?: boolean; // Propiedad opcional
+  edad: number;
+  email?: string; // Propiedad opcional
 }
+
+let usuario2: Usuario = {
+  nombre: "María",
+  edad: 30
+};
+
+// Arrays tipados
+let numeros: number[] = [1, 2, 3];
+let nombres: string[] = ["Juan", "María"];
+let numeros2: Array<number> = [1, 2, 3]; // Forma alternativa
+
+// Tuplas
+let tupla: [string, number] = ["Juan", 25];
+let coordenadas: [number, number, number] = [10, 20, 30];
+```
+
+**Ejercicios:**
+
+1. Crea una interface `Producto` con propiedades: `id`, `nombre`, `precio`, `disponible` (opcional)
+2. Declara un array de productos tipado correctamente
+3. Crea una tupla que represente un punto en 2D: `[number, number]`
+4. Implementa una función que reciba un array de números y retorne la suma
+5. Crea un objeto con tipado inline que represente un libro con título, autor y año
+
+---
 
 // Declaración merging
 interface Usuario {
@@ -3096,7 +3135,11 @@ class Estudiante extends Persona {
 
 </div>
 
-### 1. Genéricos (Generics)
+> 💡 **Sugerencia de Commit**: `git commit -m "refactor: aplicación de principios SOLID y patrones"`
+
+---
+
+## 📚 Fundamentos Básicos
 
 ![Generics](https://img.shields.io/badge/Generics-TypeScript-9C27B0?style=flat-square)
 
