@@ -376,11 +376,11 @@ console.log("\n")
  *     para cada objeto.
  *  4. TypeScript debe impedir usar claves que no existan.
  */
-function getValuesObj<T, K extends keyof T>(obj: T[], key: K[]): T[K][]{
+function getValuesObj<T, K extends keyof T>(obj: T[], key: K): T[K][]{
     let response: T[K][] = []
 
     for(let item of obj){
-        
+        response.push( item[key])
     }
     return response
 }
@@ -399,8 +399,51 @@ const squad: Gamer[] =[
     { id: 1, name: "2Pac", isAlive: false, ranking: 4 }
 ]
 
-const listGamer = getValuesObj(squad, ["name", "ranking"])
+const listGamer = getValuesObj(squad, "name")
 
 console.log("Actividad #13")
 console.log(listGamer)
+console.log("\n")
+
+/**
+ * EJERCICIO #14
+ * Crea una función genérica que:
+ *  1. Reciba un objeto.
+ * 
+ *  2. Reciba un arreglo de claves válidas de ese objeto.
+ * 
+ *  3. Devuelva un nuevo objeto que:
+ *      - Solo tenga las propiedades en el arreglo de claves.
+ *      - Conserve los tipos originales de cada propiedad.
+ * 
+ *  4. TypeScript debe impedir usar claves que no existan.
+ * 
+ */
+
+function getSpecificValue<T, K extends readonly (keyof T)[]>(
+    obj: T, 
+    keys: K) 
+    : {[P in K[number]]: T[P]} {
+   
+        const result = {} as { [P in K[number]]: T[P] }
+
+        for (const key of keys) {
+        result[key] = obj[key]
+        }
+
+        return result
+
+}
+
+// Comprobación
+const testObj = {
+    id: 1,
+    name: "Test",
+    age: 25,
+    active: true
+}
+
+const specificValues = getSpecificValue(testObj, ["id", "name"] as const)
+console.log("Actividad #14")
+console.log(specificValues)
 console.log("\n")
