@@ -202,29 +202,93 @@ console.log("\n")
  *  - Un callback filtro.
  *  - Un callback procesador.
  */
-function filtrarYProcesar(arr, fnFilter, fnProcess){
-    const newArr =[]
-    fnFilter(letra, filtro)
-    fnProcess()
-    return newArr        
+function filtrarYProcesar(arr, fnFilter, fnProcess){   
+    const filtro = [] 
+    for(let i of arr){
+        /**
+         * Por cada elemento del arreglo lo vamos 
+         * a evaluar si cumple la condicion del
+         * criterio.
+         */
+        if(fnFilter(i)){
+            filtro.push(fnProcess(i))
+        }
+    }   
+    return filtro      
 }
 
 // Comprobación
-const arr = ["Edgar", "Elena", "Juana", "Adrian", "Esteban"]
+const arr = ["Elm", "Jhon", "Zu", "Adrian", "Esteban"]
 
-const nombresQueEmpiecenConUnaLetra = filtrarYProcesar(arr, 
-    (v)=>{
-        
-    },
-    (ft) => {
-        let newArr = []
-
-    }
-
+const nombresLargos = filtrarYProcesar(arr,
+    (i) => i.length > 5,
+    (a) => ({
+        texo: a.toUpperCase(),
+        longitud: a.length
+    })
 )
-
 
 // Comprobación
 console.log("Actividad #10")
-console.log(p)
+console.log(nombresLargos)
 console.log("\n")
+
+/** 
+ * Actividad #11
+ * Crea una funcion llamada 'pipeline' que:
+ * 
+ *  - Reciba un valor.
+ *  - Reciba multiples callbacks.
+ *  - Los ejecute en secuemcia.
+ */
+function pipeline(value, fns){
+    let resultado = value
+    for(let fn of fns){
+        resultado = fn(value)
+    }
+    return resultado
+}
+
+// Comrpobacion
+const valor = 10
+console.log("Actividad #11")
+const myPipeline = pipeline(valor,
+    [
+        a => a * 2,
+        b => b * (Math.exp(b)),
+        c => Math.random(c),
+        d => Math.cos(d)/ Math.PI
+    ]
+)
+
+console.log(myPipeline)
+console.log("\n")
+
+/**
+ * EJERCICIO #12
+ * Crea una funcion 'retry' que:
+ * 
+ *  - Intente ejecutar un callback hasta tres
+ *    veces si falla.
+ */
+function retry(fn){    
+    for(let i = 0 ; i < 3 ; i ++) {
+        console.log(`Intento: ${i}`)
+        if(fn()) {
+            return "exitoso"
+        } 
+    }
+
+    return "fallido"
+}
+
+// Comprobacion
+const intento = retry(() => {
+    const max = 10
+    const min = 0
+    const random = Math.floor(Math.random() * (max - min + 1)) + min
+    console.log(`Numero random: ${random}`)
+    return  random % 2 === 0
+})
+console.log("Actividad #12")
+console.log(`Intento ${intento}!`)
