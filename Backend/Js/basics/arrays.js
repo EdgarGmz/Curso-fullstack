@@ -563,3 +563,92 @@ console.log(a_array)
  *  - negativos -> length - valor.
  *  - nunca modifica el array original (INMUTABLE).
  */
+
+/**
+ * MÉTODO map():
+ * Es método INMUTABLE de los arreglos que:
+ * 
+ *  - Recorre un arreglo.
+ *  - Aplica una función en cada elemento.
+ *  - Devuelve un nuevo arreglo.
+ *  - No modifica el arreglo original.
+ * 
+ *  Por cada elemento, devuelve otro valor. Siempre devuelve
+ *  un arreglo del mismo tamaño.
+ */
+
+/**
+ * MÉTODO map() - EJERCICIO #1
+ * Dado el arreglo:
+ *      
+ *      const numeros = [1, 2, 3, 4, 5]
+ * 
+ * Usa map() para crear un arreglo que contenga:
+ * 
+ *  - El doble de cada número.
+ */
+const elements = [1, 2, 3, 4, 5]
+const n_dobles = elements.map(n => n*2)
+console.log("\n")
+console.log("MÉTODO map() - EJERCICIO #1")
+console.log(`Nuevo array con sus elementos:`)
+console.log(n_dobles)
+
+/**
+ * MÉTODO map() - EJERCICIO #1
+ * Tienes un listado de precios en formato numérico. Tu objetivo:
+ * 
+ *  - Crear un nuevo array llamado 'preciosConIVA'.
+ *  - Cada precio tenga sumado el 21% de IVA. 
+ *  - El array original no debe de cambiar.
+ */
+console.log("\n")
+console.log("MÉTODO map() - EJERCICIO #1")
+
+// Datos de entrada
+const listado = [100 , 150, 75, 1200, 350]
+const IVA = .21
+const preciosConIVA = listado.map(precio => precio + (precio * IVA))
+
+// Datos de salida
+console.log('Los precios con IVA son:')
+console.log(preciosConIVA)
+console.log("Listado original:")
+console.log(listado)
+
+/**
+ * MÉTODO map() - EJERCICIO #2
+ * Tienes un array de usuarios que vienen de una base de datos:
+ * 
+ *  - Crea un nuevo array llamado 'usuariosPremium'.
+ *  - Si el usuario tiene mas de 100 pts, añade la propiedad llamada
+ *    esPremium: true.
+ *  - Si tiene 100 o menos pts., esPremium: false
+ *  - No debes modificar el objeto original.
+ */
+
+const usuarios = [
+    { id: 1, nombre: "Ana", puntos: 50 },
+    { id: 2, nombre: "Luis", puntos: 150 },
+    { id: 3, nombre: "Marta", puntos: 100 },
+    { id: 4, nombre: "Diego", puntos: 200 }
+];
+
+// Tu código aquí:
+const puntos = 100
+
+const usuariosVIP = usuarios.map(usuario =>{
+    const isVip = usuarios.puntos > 100
+
+    return {
+        ...usuario,
+        esPremium: isVip
+    }
+})
+
+console.log("\n")
+console.log("MÉTODO map() - EJERICICIO #2")
+console.log("Usuarios Premium:")
+console.log(usuariosVIP)
+console.log("Usuarios de la base de Datos")
+console.log(usuarios)
